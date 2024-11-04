@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="{{ .css_url }}">
+</head>
+<body>
+    <div class="container">
+        <h2>登录</h2>
+        <form id="loginForm" action="http://localhost:9999/form" method="post">
+            <input type="text" name="username" placeholder="用户名" required>
+            <input type="password" name="password" placeholder="密码" required>
+            <div class="captcha">
+                <input type="text" name="captcha" placeholder="验证码" required>
+                <img src="captcha/1" onclick="this.src='/captcha/'+Math.random()" alt="验证码">
+            </div>
+            <button type="submit" onclick="submitForm()">登录</button>
+        </form>
+        <div class="forgot">
+            <a href="#">忘记密码?</a>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // 获取表单元素
+            const form = document.getElementById('loginForm');
+            const username = document.getElementById('username');
+            const password = document.getElementById('password')
+            const captcha = document.getElementById('captcha');
+
+            // 验证输入信息（可以根据实际需求添加更多验证）
+            if (username === '' || password === '' || captcha === '') {
+                alert('请填写完整信息');
+                return;
+            }
+
+            form.submit();
+        }
+    </script>
+</body>
+</html>
